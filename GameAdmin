@@ -1,0 +1,43 @@
+using System.Collections.Generic;
+using UnityEngine;
+using System.IO;
+
+public class EscapeRoomManager : MonoBehaviour
+{
+    public TextAsset escapeRoomJson; // Asigna el archivo JSON en el Inspector
+
+    private EscapeRoomVariables escapeRoomData;
+
+    private void Start()
+    {
+        if (escapeRoomJson != null)
+        {
+            string json = escapeRoomJson.text;
+            escapeRoomData = JsonUtility.FromJson<EscapeRoomVariables>(json);
+
+            Debug.Log("Nombre del Escape Room: " + escapeRoomData.Nombre);
+
+            foreach (var habitacion in escapeRoomData.Habitaciones)
+            {
+                Debug.Log("Habitación: " + habitacion.Key);
+                Debug.Log("Descripción: " + habitacion.Value.Descripcion);
+
+                foreach (var objeto in habitacion.Value.Objetos)
+                {
+                    Debug.Log("Objeto: " + objeto.Nombre);
+                    Debug.Log("Descripción: " + objeto.Descripcion);
+
+                    foreach (var interaccion in objeto.Interacciones)
+                    {
+                        Debug.Log("Interacción: " + interaccion.Accion);
+                        Debug.Log("Descripción: " + interaccion.Descripcion);
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("No se ha asignado el archivo JSON en el Inspector.");
+        }
+    }
+}
