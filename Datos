@@ -1,0 +1,52 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Serialization;
+
+[System.Serializable]
+public class Interaccion
+{
+    public string Accion;
+    public string Descripcion;
+    public string Requiere;
+    public Resultado Resultado;
+}
+
+[System.Serializable]
+public class Resultado
+{
+    public string Item;
+    public string Descripcion;
+    public string Accion;
+}
+
+[System.Serializable]
+public class Objeto
+{
+    public string Nombre;
+    public string Descripcion;
+    public List<Interaccion> Interacciones;
+}
+
+[System.Serializable]
+public class Conexion
+{
+    public string Direccion;
+    public string HabitacionDestino;
+}
+
+[System.Serializable]
+public class Habitacion
+{
+    public string Nombre;
+    public string Descripcion;
+    public List<Objeto> Objetos;
+    public List<Conexion> Conexiones;
+    public List<string> PistasGenerales;
+}
+
+[System.Serializable]
+public class EscapeRoomVariables
+{
+    public string Nombre;
+    public string Des
